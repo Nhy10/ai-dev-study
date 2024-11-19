@@ -9,6 +9,10 @@ model = SentimentModel()
 class TextInput(BaseModel):
     text: str
 
+@app.get("/")
+def home(msg: str):
+	return {"text" : msg}
+
 @app.post("/predict")
 async def predict_sentiment(input: TextInput):
     prediction = model.predict(input.text)
